@@ -1,0 +1,33 @@
+{
+    "name": "andres-breads/yii2-dashlite",
+    "description": "DashLite template for yii2",
+    "keywords": ["yii2","extension","dashlite","layout"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "support": {
+        "source": "https://github.com/Andres-Breads/yii2-dashlite"
+    },
+    "autoload": {
+        "psr-4": {
+            "andresbreads\\dashlite\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Carlos Aucaruri",
+            "email": "carlos.aucaruri@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.5.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
+    },
+}
