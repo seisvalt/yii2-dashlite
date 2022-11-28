@@ -8,7 +8,7 @@ list(,$url) = Yii::$app->assetManager->publish('@andresbreads/dashlite/assets');
 $this->params['logo'] = $this->params['logo'] ?? $url.'/images/logo.png';
 $this->params['logo2x'] = $this->params['logo2x'] ?? $url.'/images/logo2x.png';
 $this->params['logoDark'] = $this->params['logoDark'] ?? $url.'/images/logo-dark.png';
-$this->params['logoDark2X'] = $this->params['logoDark2X'] ?? $url.'/images/logo-dark2x.png';
+$this->params['logoDark2x'] = $this->params['logoDark2x'] ?? $url.'/images/logo-dark2x.png';
 
 $this->params['mainMenu'] = $this->params['mainMenu'] ?? [
     [
@@ -65,10 +65,6 @@ $this->params['userMenu'] = $this->params['userMenu'] ?? [
     'dark-switch',
 ];
 ?>
-<head>
-    <!-- StyleSheets  -->
-    <link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=2.7.0">
-</head>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
     <div class="nk-app-root">

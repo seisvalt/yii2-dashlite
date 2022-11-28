@@ -11,7 +11,7 @@ class DashLiteAsset extends AssetBundle
 {
     public $sourcePath = '@vendor/andres-breads/dashlite/assets';
     public $css = [
-        "css/dashlite.min.css",
+        "css/dashlite.css",
         "css/theme.css",
     ];
     public $js = [
@@ -19,8 +19,5 @@ class DashLiteAsset extends AssetBundle
         "js/scripts.js",
     ];
     public $depends = [
-        BaseAsset::class,
-        SimplebarAsset::class,
-        StyleAsset::class,
     ];
 }
