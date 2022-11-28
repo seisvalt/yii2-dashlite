@@ -13,6 +13,7 @@ class DashLiteAsset extends AssetBundle
     public $css = [
         "css/dashlite.css",
         "css/theme.css",
+        "css/extended.css",
     ];
     public $js = [
         "js/bundle.js",

@@ -94,7 +94,6 @@ class UserDropdown extends \yii\bootstrap5\Dropdown
             $active = ArrayHelper::getValue($item, 'active', false);
             $disabled = ArrayHelper::getValue($item, 'disabled', false);
 
-            Html::addCssClass($linkOptions, ['widget' => 'dropdown-item']);
             if ($disabled) {
                 ArrayHelper::setValue($linkOptions, 'tabindex', '-1');
                 ArrayHelper::setValue($linkOptions, 'aria.disabled', 'true');
