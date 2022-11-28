@@ -1,4 +1,4 @@
-.link-list button { display: flex; align-items: center; color: #526484; font-size: 13px; line-height: 1.4rem; font-weight: 500; padding: .575rem 0; position: relative; }
+.link-list button { display: flex; align-items: center; color: #526484; font-size: 13px; line-height: 1.4rem; font-weight: 500; padding: .575rem 0; position: relative; background-color: inherit; border: none; }
 
 .link-list button:hover { color: #6576ff; }
 
