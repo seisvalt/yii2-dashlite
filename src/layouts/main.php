@@ -2,6 +2,9 @@
 
 use andresbreads\dashlite\widgets\Menu;
 use andresbreads\dashlite\widgets\UserDropdown;
+use andresbreads\dashlite\assets\DashLiteAsset;
+
+DashLiteAsset::register($this);
 
 list(,$url) = Yii::$app->assetManager->publish('@andresbreads/dashlite/assets');
 
@@ -244,25 +247,25 @@ $this->params['userMenu'] = $this->params['userMenu'] ?? [
                                             <ul class="language-list">
                                                 <li>
                                                     <a href="#" class="language-item">
-                                                        <img src="./images/flags/english.png" alt="" class="language-flag">
+                                                        <img src="<?=$url?>/images/flags/english.png" alt="" class="language-flag">
                                                         <span class="language-name">English</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="#" class="language-item">
-                                                        <img src="./images/flags/spanish.png" alt="" class="language-flag">
+                                                        <img src="<?=$url?>/images/flags/spanish.png" alt="" class="language-flag">
                                                         <span class="language-name">Español</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="#" class="language-item">
-                                                        <img src="./images/flags/french.png" alt="" class="language-flag">
+                                                        <img src="<?=$url?>/images/flags/french.png" alt="" class="language-flag">
                                                         <span class="language-name">Français</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="#" class="language-item">
-                                                        <img src="./images/flags/turkey.png" alt="" class="language-flag">
+                                                        <img src="<?=$url?>/images/flags/turkey.png" alt="" class="language-flag">
                                                         <span class="language-name">Türkçe</span>
                                                     </a>
                                                 </li>

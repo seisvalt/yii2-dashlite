@@ -9,7 +9,7 @@ use yii\web\AssetBundle;
  */
 class DashLiteAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/andres-breads/dashlite/assets';
+    public $sourcePath = '@andresbreads/dashlite/assets';
     public $css = [
         "css/dashlite.css",
         "css/theme.css",
