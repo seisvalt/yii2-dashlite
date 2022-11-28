@@ -20,5 +20,8 @@ class DashLiteAsset extends AssetBundle
         "js/scripts.js",
     ];
     public $depends = [
+        BaseAsset::class,
+        SimplebarAsset::class,
+        DatatablesAsset::class,
     ];
 }
