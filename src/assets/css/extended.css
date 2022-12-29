@@ -1,9 +1,0 @@
-.link-list button { display: flex; align-items: center; color: #526484; font-size: 13px; line-height: 1.4rem; font-weight: 500; padding: .575rem 0; position: relative; background-color: inherit; border: none; width: 100%; }
-
-.link-list button:hover { color: #6576ff; }
-
-.link-list button .icon { font-size: 1.125rem; width: 1.5rem; line-height: 1; }
-
-.dark-mode .link-list button { color: #8094ae; }
-
-.dark-mode .link-list button:hover { color: #6576ff; }
