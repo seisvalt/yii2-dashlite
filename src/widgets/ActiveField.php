@@ -30,6 +30,11 @@ class ActiveField extends \yii\widgets\ActiveField
     public $labelOptions = ['class' => 'form-label-outlined control-label'];
 
     /**
+     * @var bool if "for" field label attribute should be skipped.
+     */
+    private $_skipLabelFor = false;
+
+    /**
      * {@inheritDoc}
      */
     public function begin()
@@ -72,6 +77,8 @@ class ActiveField extends \yii\widgets\ActiveField
     public function dropDownList($items, $options = [])
     {
         $options = array_merge($this->inputOptions, $options);
+        $options['class'] = 'form-select js-select2';
+
         Html::removeCssClass($options, 'form-control-outlined');
         Html::addCssClass($options, 'form-select');
 
@@ -82,6 +89,41 @@ class ActiveField extends \yii\widgets\ActiveField
         $this->addAriaAttributes($options);
         $this->adjustLabelFor($options);
         $this->parts['{input}'] = Html::activeDropDownList($this->model, $this->attribute, $items, $options);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function radioList($items, $options = [])
+    {
+        $this->template = "{label}\n{input}\n{hint}\n{error}";
+        $this->labelOptions = ['class' => 'form-label control-label'];
+
+        if ($this->form->validationStateOn === ActiveForm::VALIDATION_STATE_ON_INPUT) {
+            $this->addErrorClassIfNeeded($options);
+        }
+
+        $this->addRoleAttributes($options, 'radiogroup');
+        $this->addAriaAttributes($options);
+        $this->adjustLabelFor($options);
+        $this->_skipLabelFor = true;
+        $this->parts['{input}'] = Html::activeRadioList($this->model, $this->attribute, $items, $options);
+
+        return $this;
+    }
+
+    public function datePicker($options = [])
+    {
+        $options['class'] = 'form-control form-control-outlined date-picker';
+        if (!isset($options['format'])) {
+            $options['data-date-format'] = 'yyyy-mm-dd';
+        } else {
+            $options['data-date-format'] = $options['format'];
+            unset($options['format']);
+        }
+        $this->textInput($options);
 
         return $this;
     }
