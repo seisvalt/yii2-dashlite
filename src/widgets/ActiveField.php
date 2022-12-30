@@ -15,6 +15,16 @@ use yii\web\JsExpression;
 class ActiveField extends \yii\widgets\ActiveField
 {
     /**
+     * @var ActiveForm the form that this field is associated with.
+     */
+    public $form;
+
+    /**
+     * {@inheritDoc}
+     */
+    public $parts = [];
+
+    /**
      * {@inheritDoc}
      */
     public $template = "{input}\n{label}\n{hint}\n{error}";
@@ -89,6 +99,38 @@ class ActiveField extends \yii\widgets\ActiveField
         $this->addAriaAttributes($options);
         $this->adjustLabelFor($options);
         $this->parts['{input}'] = Html::activeDropDownList($this->model, $this->attribute, $items, $options);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function checkbox($options = [], $enclosedByLabel = false)
+    {
+        $this->labelOptions = ['class' => 'form-label control-label'];
+
+        if ($this->form->validationStateOn === ActiveForm::VALIDATION_STATE_ON_INPUT) {
+            $this->addErrorClassIfNeeded($options);
+        }
+
+        $this->addAriaAttributes($options);
+        $this->adjustLabelFor($options);
+
+        if ($enclosedByLabel) {
+            $this->parts['{input}'] = Html::activeCheckbox($this->model, $this->attribute, $options);
+            $this->parts['{label}'] = '';
+        } else {
+            if (isset($options['label']) && !isset($this->parts['{label}'])) {
+                $this->parts['{label}'] = $options['label'];
+                if (!empty($options['labelOptions'])) {
+                    $this->labelOptions = $options['labelOptions'];
+                }
+            }
+            unset($options['labelOptions']);
+            $options['label'] = null;
+            $this->parts['{input}'] = Html::activeCheckbox($this->model, $this->attribute, $options);
+        }
 
         return $this;
     }
