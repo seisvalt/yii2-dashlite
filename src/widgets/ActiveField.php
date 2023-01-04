@@ -84,6 +84,32 @@ class ActiveField extends \yii\widgets\ActiveField
     /**
      * {@inheritDoc}
      */
+    public function textInput($options = [])
+    {
+        if (ArrayHelper::keyExists('data-bs-content', $options)) {
+            $options['data-bs-toggle'] = 'popover';
+            $options['data-bs-trigger'] = 'focus';
+        }
+
+        return parent::textInput($options);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function passwordInput($options = [])
+    {
+        if (ArrayHelper::keyExists('data-bs-content', $options)) {
+            $options['data-bs-toggle'] = 'popover';
+            $options['data-bs-trigger'] = 'focus';
+        }
+
+        return parent::passwordInput($options);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function dropDownList($items, $options = [])
     {
         $options = array_merge($this->inputOptions, $options);
