@@ -134,31 +134,11 @@ class ActiveField extends \yii\widgets\ActiveField
      */
     public function checkbox($options = [], $enclosedByLabel = false)
     {
-        $this->labelOptions = ['class' => 'form-label control-label'];
-
-        if ($this->form->validationStateOn === ActiveForm::VALIDATION_STATE_ON_INPUT) {
-            $this->addErrorClassIfNeeded($options);
-        }
-
-        $this->addAriaAttributes($options);
-        $this->adjustLabelFor($options);
-
-        if ($enclosedByLabel) {
-            $this->parts['{input}'] = Html::activeCheckbox($this->model, $this->attribute, $options);
-            $this->parts['{label}'] = '';
-        } else {
-            if (isset($options['label']) && !isset($this->parts['{label}'])) {
-                $this->parts['{label}'] = $options['label'];
-                if (!empty($options['labelOptions'])) {
-                    $this->labelOptions = $options['labelOptions'];
-                }
-            }
-            unset($options['labelOptions']);
-            $options['label'] = null;
-            $this->parts['{input}'] = Html::activeCheckbox($this->model, $this->attribute, $options);
-        }
-
-        return $this;
+        $this->template = '<div class="custom-control custom-checkbox">{input}{label}{error}{hint}</div>';
+        $this->labelOptions = ['class' => 'custom-control-label'];
+        $options = [ 'class' => 'custom-control-input'];
+        
+        return parent::checkbox($options, $enclosedByLabel);
     }
 
     /**
