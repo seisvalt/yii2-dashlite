@@ -18,6 +18,7 @@ class DashLiteAsset extends AssetBundle
         "js/bundle.js",
         "js/scripts.js",
     ];
+    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
     public $depends = [
         BaseAsset::class,
     ];
