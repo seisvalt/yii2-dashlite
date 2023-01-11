@@ -3,8 +3,12 @@
 use andresbreads\dashlite\widgets\Menu;
 use andresbreads\dashlite\widgets\UserDropdown;
 use andresbreads\dashlite\assets\DashLiteAsset;
+use andresbreads\dashlite\assets\SimplebarAsset;
+use andresbreads\dashlite\assets\DatatablesAsset;
 
 DashLiteAsset::register($this);
+SimplebarAsset::register($this);
+DatatablesAsset::register($this);
 
 list(,$url) = Yii::$app->assetManager->publish('@andresbreads/dashlite/assets');
 
@@ -123,7 +127,7 @@ $this->params['userMenu'] = $this->params['userMenu'] ?? [
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown user-dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                             <div class="user-toggle">
                                                 <div class="user-avatar sm">
                                                     <em class="icon ni ni-user-alt"></em>
@@ -142,7 +146,7 @@ $this->params['userMenu'] = $this->params['userMenu'] ?? [
                                         ]) ?>
                                     </li><!-- .dropdown -->
                                     <li class="dropdown notification-dropdown mr-n1">
-                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                                             <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">

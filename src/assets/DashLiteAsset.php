@@ -20,7 +20,5 @@ class DashLiteAsset extends AssetBundle
     ];
     public $depends = [
         BaseAsset::class,
-        SimplebarAsset::class,
-        DatatablesAsset::class,
     ];
 }

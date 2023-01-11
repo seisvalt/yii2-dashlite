@@ -10,6 +10,7 @@ use yii\base\InvalidConfigException;
 use yii\bootstrap5\Html;
 use yii\helpers\Json;
 use yii\bootstrap5\Dropdown;
+use yii\web\JsExpression;
 
 class Kanban extends \yii\base\Widget
 {
@@ -17,6 +18,7 @@ class Kanban extends \yii\base\Widget
     public $varName;
     public $widthBoard = '320px';
     public $responsivePercentage = false;
+    public $dragItems = true;
     public $boards = [];
     private $boardsJson;
 
@@ -49,6 +51,7 @@ class Kanban extends \yii\base\Widget
         KanbanAsset::register($view);
         $this->normalizeBoards();
         $this->responsivePercentage = $this->responsivePercentage ? 'true' : 'false';
+        $this->dragItems = $this->dragItems ? 'true' : 'false';
         $view->registerJs("$(function() {
             \"use strict\";
 
@@ -58,11 +61,17 @@ class Kanban extends \yii\base\Widget
                     gutter: '0',
                     widthBoard: '{$this->widthBoard}',
                     responsivePercentage: {$this->responsivePercentage},
+                    dragItems: {$this->dragItems},
                     boards: {$this->boardsJson}
                 });
             }
 
-            openKanban()
+            openKanban();
+
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle=\"popover\"]'))
+            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+                return new bootstrap.Popover(popoverTriggerEl)
+            })
         });", \yii\web\View::POS_END);
         echo Html::tag('div', '', ['id' => substr($this->element, 1), 'class' => 'nk-kanban']);
         parent::run();
@@ -85,11 +94,42 @@ class Kanban extends \yii\base\Widget
                 'id' => $id,
                 'title' => $title,
                 'class' => $board['class'] ?? 'kanban-primary',
-                'item' => $board['item'],
+                'item' => $this->normalizeItems($board['item']),
             ];
         }
 
         $this->boardsJson = Json::encode($boards);
+    }
+
+    protected function normalizeItems($items)
+    {
+        foreach ($items as $key => $item) {
+            if (isset($item['click'])) {
+                $items[$key]['click'] = $item['click'] instanceof JsExpression ? $item['click'] : new JsExpression($item['click']);
+            }
+            if (isset($item['context'])) {
+                $items[$key]['context'] = $item['context'] instanceof JsExpression ? $item['context'] : new JsExpression($item['context']);
+            }
+            if (isset($item['dragEl'])) {
+                $items[$key]['dragEl'] = $item['dragEl'] instanceof JsExpression ? $item['dragEl'] : new JsExpression($item['dragEl']);
+            }
+            if (isset($item['dragendEl'])) {
+                $items[$key]['dragendEl'] = $item['dragendEl'] instanceof JsExpression ? $item['dragendEl'] : new JsExpression($item['dragendEl']);
+            }
+            if (isset($item['dropEl'])) {
+                $items[$key]['dropEl'] = $item['dropEl'] instanceof JsExpression ? $item['dropEl'] : new JsExpression($item['dropEl']);
+            }
+            if (isset($item['dragBoard'])) {
+                $items[$key]['dragBoard'] = $item['dragBoard'] instanceof JsExpression ? $item['dragBoard'] : new JsExpression($item['dragBoard']);
+            }
+            if (isset($item['dragendBoard'])) {
+                $items[$key]['dragendBoard'] = $item['dragendBoard'] instanceof JsExpression ? $item['dragendBoard'] : new JsExpression($item['dragendBoard']);
+            }
+            if (isset($item['buttonClick'])) {
+                $items[$key]['buttonClick'] = $item['buttonClick'] instanceof JsExpression ? $item['buttonClick'] : new JsExpression($item['buttonClick']);
+            }
+        }
+        return $items;
     }
 
     protected function renderTitle($title, $titleAmount, $showOptions, $optionItems = [])
