@@ -4,11 +4,9 @@ use andresbreads\dashlite\widgets\Menu;
 use andresbreads\dashlite\widgets\UserDropdown;
 use andresbreads\dashlite\assets\DashLiteAsset;
 use andresbreads\dashlite\assets\SimplebarAsset;
-use andresbreads\dashlite\assets\DatatablesAsset;
 
 DashLiteAsset::register($this);
 SimplebarAsset::register($this);
-DatatablesAsset::register($this);
 
 list(,$url) = Yii::$app->assetManager->publish('@andresbreads/dashlite/assets');
 
