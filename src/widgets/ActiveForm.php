@@ -23,9 +23,4 @@ class ActiveForm extends \yii\widgets\ActiveForm
     /**
      * {@inheritDoc}
      */
-    public function registerClientScript()
-    {
-        $view = $this->getView();
-        \andresbreads\dashlite\assets\DashLiteAsset::register($view);
-    }
 }
