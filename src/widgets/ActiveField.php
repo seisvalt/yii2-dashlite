@@ -44,6 +44,8 @@ class ActiveField extends \yii\widgets\ActiveField
      */
     private $_skipLabelFor = false;
 
+    public $errorOptions = ['class' => 'error'];
+
     /**
      * {@inheritDoc}
      */
