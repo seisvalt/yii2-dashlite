@@ -20,7 +20,5 @@ class ActiveForm extends \yii\widgets\ActiveForm
      */
     public $fieldClass = 'andresbreads\dashlite\widgets\ActiveField';
 
-    /**
-     * {@inheritDoc}
-     */
+
 }

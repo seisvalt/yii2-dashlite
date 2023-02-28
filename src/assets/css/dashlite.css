@@ -3,8 +3,8 @@
 * Template Name: DashLite
 * Author: Softnio
 * Author URI: http://themeforest.net/user/softnio
-* Version: 3.1.1
-* Updated: 10.22.2022
+* Version: 3.1.2
+* Updated: 01.14.2022
 **/
 
 
@@ -12624,6 +12624,12 @@ svg {
 
 .border-transparent {
   border-color: transparent;
+}
+.border-dashed {
+  border-style: dashed !important;
+}
+.border-dotted {
+  border-style: dotted !important;
 }
 
 .w-40px {
@@ -25578,11 +25584,13 @@ div.dt-buttons .dual-listbox a.processing.dual-listbox__button:after,
 }
 
 /* classes attached to <body> */
+/* TODO: make fc-event selector work when calender in shadow DOM */
 .fc-not-allowed,
 .fc-not-allowed .fc-event { /* override events' custom cursors */
   cursor: not-allowed;
 }
 
+/* TODO: not attached to body. attached to specific els. move */
 .fc-unselectable {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -25610,6 +25618,31 @@ div.dt-buttons .dual-listbox a.processing.dual-listbox__button:after,
   border-collapse: collapse;
   border-spacing: 0;
   font-size: 1em; /* normalize cross-browser */
+  border-radius: 4px;
+}
+.fc table th {
+  border: 1px solid #dbdfea;
+}
+.fc table td {
+  border: 1px solid #dbdfea;
+}
+.fc table thead th, .fc table thead td {
+  border-bottom-width: 0;
+}
+.fc table thead > tr > th, .fc table thead > tr > td {
+  border-bottom-width: 1px;
+}
+.fc table thead tr:first-child td:first-child, .fc table thead tr:first-child th:first-child {
+  border-radius: 4px 0 0 0;
+}
+.fc table thead tr:first-child td:last-child, .fc table thead tr:first-child th:last-child {
+  border-radius: 0 4px 0 0;
+}
+.fc table tbody tr:last-child td:first-child, .fc table tbody tr:last-child th:first-child {
+  border-radius: 0 0 0 4px;
+}
+.fc table tbody tr:last-child td:last-child, .fc table tbody tr:last-child th:last-child {
+  border-radius: 0 0 4px 0;
 }
 
 .fc th {
@@ -25620,34 +25653,6 @@ div.dt-buttons .dual-listbox a.processing.dual-listbox__button:after,
 .fc td {
   vertical-align: top;
   padding: 0;
-}
-
-.fc .table-bordered {
-  border-radius: 4px;
-}
-.fc .table-bordered th {
-  border: 1px solid #dbdfea;
-}
-.fc .table-bordered td {
-  border: 1px solid #dbdfea;
-}
-.fc .table-bordered thead th, .fc .table-bordered thead td {
-  border-bottom-width: 0;
-}
-.fc .table-bordered thead > tr > th, .fc .table-bordered thead > tr > td {
-  border-bottom-width: 1px;
-}
-.fc thead tr:first-child td:first-child, .fc thead tr:first-child th:first-child {
-  border-radius: 4px 0 0 0;
-}
-.fc thead tr:first-child td:last-child, .fc thead tr:first-child th:last-child {
-  border-radius: 0 4px 0 0;
-}
-.fc tbody tr:last-child td:first-child, .fc tbody tr:last-child th:first-child {
-  border-radius: 0 0 0 4px;
-}
-.fc tbody tr:last-child td:last-child, .fc tbody tr:last-child th:last-child {
-  border-radius: 0 0 4px 0;
 }
 
 .fc a[data-navlink] {
@@ -25688,7 +25693,7 @@ div.dt-buttons .dual-listbox a.processing.dual-listbox__button:after,
   font-weight: normal;
   font-style: normal;
 }
-.fc-icon, .fa {
+.fc-icon, .fc .bi {
   /* added for fc */
   display: inline-block;
   width: 1em;
@@ -25711,31 +25716,31 @@ div.dt-buttons .dual-listbox a.processing.dual-listbox__button:after,
   -moz-osx-font-smoothing: grayscale;
 }
 
-.fc-icon-chevron-left:before, .fa-chevron-left:before {
+.fc-icon-chevron-left:before, .fc .bi-chevron-left:before {
   content: "\e900";
 }
 
-.fc-icon-chevron-right:before, .fa-chevron-right:before {
+.fc-icon-chevron-right:before, .fc .bi-chevron-right:before {
   content: "\e901";
 }
 
-.fc-icon-chevrons-left:before, .fa-chevrons-left:before {
+.fc-icon-chevrons-left:before, .fc .bi-chevrons-left:before {
   content: "\e902";
 }
 
-.fc-icon-chevrons-right:before, .fa-chevrons-right:before {
+.fc-icon-chevrons-right:before, .fc .bi-chevrons-right:before {
   content: "\e903";
 }
 
-.fc-icon-minus-square:before, .fa-minus-square:before {
+.fc-icon-minus-square:before, .fc .bi-minus-square:before {
   content: "\e904";
 }
 
-.fc-icon-plus-square:before, .fa-plus-square:before {
+.fc-icon-plus-square:before, .fc .bi-plus-square:before {
   content: "\e905";
 }
 
-.fc-icon-x:before, .fa-times:before {
+.fc-icon-x:before, .fc .bi-x-lg:before {
   content: "\e906";
 }
 
@@ -25960,9 +25965,9 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 }
 .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .btn.active, .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .dual-listbox .active.dual-listbox__button, .dual-listbox .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .active.dual-listbox__button {
   color: #364a63;
-  border: 1px solid #dbdfea;
+  border: 1px solid #dbdfea !important;
   background: #f5f6fa;
-  box-shadow: inset 0 0 4px -1px rgba(128, 148, 174, 0.25);
+  box-shadow: none;
 }
 .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .fc-prev-button, .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .fc-next-button {
   border: none !important;
@@ -26099,10 +26104,6 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
   /* serves as a min-height. harmless */
 }
 
-.fc .fc-scrollgrid-section-liquid {
-  height: auto;
-}
-
 .fc .fc-scrollgrid-section-liquid > td {
   height: 100%; /* better than `auto`, for firefox */
 }
@@ -26129,9 +26130,8 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 .fc .fc-scrollgrid-section-sticky > * {
   background: #fff;
   background: var(--fc-page-bg-color, #fff);
-  position: -webkit-sticky;
   position: sticky;
-  z-index: 2; /* TODO: var */
+  z-index: 3; /* TODO: var */
   /* TODO: box-shadow when sticking */
 }
 
@@ -26150,7 +26150,6 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 }
 
 .fc-sticky { /* no .fc wrap because used as child of body */
-  position: -webkit-sticky;
   position: sticky;
 }
 
@@ -26219,9 +26218,12 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 
 /* link resets */
 /* ---------------------------------------------------------------------------------------------------- */
+.fc .fc-view:not(.fc-timeGridWeek-view) .fc-event {
+  margin: 0.5rem 0.375rem;
+}
+
 .fc .fc-event {
   padding: 0.125rem 0.375rem;
-  margin: 0.5rem 0.375rem;
 }
 
 a.fc-event,
@@ -26293,12 +26295,15 @@ a.fc-event:hover {
 }
 
 /* selecting (always TOUCH) */
+/* OR, focused by tab-index */
+/* (TODO: maybe not the best focus-styling for .fc-daygrid-dot-event) */
 /* ---------------------------------------------------------------------------------------------------- */
-.fc-event-selected {
+.fc-event-selected,
+.fc-event:focus {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.fc-event-selected:before {
+.fc-event-selected:before, .fc-event:focus:before {
   content: "";
   position: absolute;
   z-index: 3;
@@ -26308,11 +26313,12 @@ a.fc-event:hover {
   bottom: 0;
 }
 
-.fc-event-selected {
+.fc-event-selected,
+.fc-event:focus {
   /* dimmer effect */
 }
 
-.fc-event-selected:after {
+.fc-event-selected:after, .fc-event:focus:after {
   content: "";
   background: rgba(0, 0, 0, 0.25);
   background: var(--fc-event-selected-overlay-color, rgba(0, 0, 0, 0.25));
@@ -26333,7 +26339,9 @@ A HORIZONTAL event
 .fc-h-event { /* allowed to be top-level */
   display: block;
   border: 1px solid #6576ff;
+  border: 1px solid var(--fc-event-border-color, #6576ff);
   background-color: #6576ff;
+  background-color: var(--fc-event-bg-color, #6576ff);
 }
 
 .fc-h-event .fc-event-main-frame {
@@ -26393,42 +26401,37 @@ A HORIZONTAL event
 .fc-direction-rtl .fc-h-event:not(.fc-event-selected) .fc-event-resizer-end {
   cursor: w-resize;
   left: -4px;
-  left: calc(var(--fc-event-resizer-thickness, 8px) / -2);
+  left: calc(-0.5 * var(--fc-event-resizer-thickness, 8px));
 }
 
 .fc-direction-ltr .fc-h-event:not(.fc-event-selected) .fc-event-resizer-end,
 .fc-direction-rtl .fc-h-event:not(.fc-event-selected) .fc-event-resizer-start {
   cursor: e-resize;
   right: -4px;
-  right: calc(var(--fc-event-resizer-thickness, 8px) / -2);
+  right: calc(-0.5 * var(--fc-event-resizer-thickness, 8px));
 }
 
 /* resizers for TOUCH */
 .fc-h-event.fc-event-selected .fc-event-resizer {
   top: 50%;
   margin-top: -4px;
-  margin-top: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+  margin-top: calc(-0.5 * var(--fc-event-resizer-dot-total-width, 8px));
 }
 
 .fc-direction-ltr .fc-h-event.fc-event-selected .fc-event-resizer-start,
 .fc-direction-rtl .fc-h-event.fc-event-selected .fc-event-resizer-end {
   left: -4px;
-  left: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
+  left: calc(-0.5 * var(--fc-event-resizer-dot-total-width, 8px));
 }
 
 .fc-direction-ltr .fc-h-event.fc-event-selected .fc-event-resizer-end,
 .fc-direction-rtl .fc-h-event.fc-event-selected .fc-event-resizer-start {
   right: -4px;
-  right: calc(var(--fc-event-resizer-dot-total-width, 8px) / -2);
-}
-
-:root {
-  --fc-daygrid-event-dot-width: 8px;
+  right: calc(-0.5 * var(--fc-event-resizer-dot-total-width, 8px));
 }
 
 .fc .fc-popover {
-  position: fixed;
-  top: 0; /* for when not positioned yet */
+  position: absolute;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
@@ -26462,6 +26465,10 @@ A HORIZONTAL event
   background: var(--fc-neutral-bg-color, rgba(208, 208, 208, 0.3));
 }
 
+:root {
+  --fc-daygrid-event-dot-width: 8px;
+}
+
 /* help things clear margins of inner content */
 .fc-daygrid-day-frame,
 .fc-daygrid-day-events,
@@ -26486,6 +26493,7 @@ A HORIZONTAL event
 
 .fc .fc-daygrid-day.fc-day-today {
   background-color: rgba(101, 118, 255, 0.07);
+  background-color: var(--fc-today-bg-color, rgba(101, 118, 255, 0.07));
 }
 
 .fc .fc-daygrid-day-frame {
@@ -26601,7 +26609,13 @@ A HORIZONTAL event
 
 .fc .fc-daygrid-day-bottom {
   font-size: 0.85em;
-  margin: 2px 3px 0;
+  padding: 2px 3px 0;
+}
+
+.fc .fc-daygrid-day-bottom:before {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 .fc .fc-daygrid-more-link {
@@ -26631,10 +26645,6 @@ A HORIZONTAL event
   /* popover */
 }
 
-.fc .fc-more-popover {
-  z-index: 8;
-}
-
 .fc .fc-more-popover .fc-popover-body {
   min-width: 220px;
   padding: 10px;
@@ -26642,12 +26652,12 @@ A HORIZONTAL event
 
 .fc-direction-ltr .fc-daygrid-event.fc-event-start,
 .fc-direction-rtl .fc-daygrid-event.fc-event-end {
-  margin-left: 0.25rem;
+  margin-left: 2px;
 }
 
 .fc-direction-ltr .fc-daygrid-event.fc-event-end,
 .fc-direction-rtl .fc-daygrid-event.fc-event-start {
-  margin-right: 0.25rem;
+  margin-right: 2px;
 }
 
 .fc-direction-ltr .fc-daygrid-week-number {
@@ -26686,7 +26696,7 @@ A HORIZONTAL event
 .fc-daygrid-dot-event {
   display: flex;
   align-items: center;
-  padding: 0.25rem 0.25rem;
+  padding: 2px 0;
 }
 
 .fc-daygrid-dot-event .fc-event-title {
@@ -26709,12 +26719,12 @@ A HORIZONTAL event
 }
 
 .fc-daygrid-event-dot { /* the actual dot */
-  margin: -2px 4px 0;
+  margin: 0 4px;
   box-sizing: content-box;
   width: 0;
   height: 0;
   border: 3px solid #6576ff;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 /* --- spacing between time and title --- */
@@ -26732,7 +26742,9 @@ A VERTICAL event
 .fc-v-event { /* allowed to be top-level */
   display: block;
   border: 1px solid #6576ff;
+  border: 1px solid var(--fc-event-border-color, #6576ff);
   background-color: #6576ff;
+  background-color: var(--fc-event-bg-color, #6576ff);
 }
 
 .fc-v-event .fc-event-main {
@@ -26866,8 +26878,7 @@ A VERTICAL event
 
 .fc .fc-timegrid-slot { /* a <td> */
   height: 1.5em;
-  border-bottom: 0; /* each cell owns its top border */
-  padding: 0.25rem;
+  border-bottom: 0;
 }
 
 .fc .fc-timegrid-slot:empty:before {
@@ -26935,7 +26946,8 @@ A VERTICAL event
 }
 
 .fc .fc-timegrid-col.fc-day-today {
-  background-color: rgba(101, 118, 255, 0.07);
+  background-color: rgba(255, 220, 40, 0.15);
+  background-color: var(--fc-today-bg-color, rgba(255, 220, 40, 0.15));
 }
 
 .fc .fc-timegrid-col-frame {
@@ -26943,7 +26955,7 @@ A VERTICAL event
   position: relative;
 }
 
-.fc-liquid-hack .fc-timegrid-col-frame {
+.fc-media-screen.fc-liquid-hack .fc-timegrid-col-frame {
   height: auto;
   position: absolute;
   top: 0;
@@ -26971,10 +26983,6 @@ A VERTICAL event
   top: 0;
   left: 0;
   right: 0;
-}
-
-.fc-media-screen .fc-timegrid-event-harness {
-  position: absolute; /* top/left/right/bottom will all be set by JS */
 }
 
 .fc {
@@ -27032,16 +27040,34 @@ A VERTICAL event
   margin: 0 2px 0 2.5%;
 }
 
+.fc-timegrid-event-harness {
+  position: absolute;
+}
+
+.fc-timegrid-event-harness > .fc-timegrid-event {
+  position: absolute; /* absolute WITHIN the harness */
+  top: 0; /* for when not yet positioned */
+  bottom: 0; /* " */
+  left: 0;
+  right: 0;
+}
+
 .fc-timegrid-event-harness-inset .fc-timegrid-event,
-.fc-timegrid-event.fc-event-mirror {
+.fc-timegrid-event.fc-event-mirror,
+.fc-timegrid-more-link {
   box-shadow: 0px 0px 0px 1px #fff;
   box-shadow: 0px 0px 0px 1px var(--fc-page-bg-color, #fff);
 }
 
-.fc-timegrid-event { /* events need to be root */
+.fc-timegrid-event,
+.fc-timegrid-more-link { /* events need to be root */
   font-size: 0.85em;
   font-size: var(--fc-small-font-size, 0.85em);
   border-radius: 3px;
+}
+
+.fc-timegrid-event { /* events need to be root */
+  margin-bottom: 1px;
 }
 
 .fc-timegrid-event .fc-event-main {
@@ -27055,26 +27081,42 @@ A VERTICAL event
   margin-bottom: 1px;
 }
 
-.fc-timegrid-event-condensed .fc-event-main-frame {
+.fc-timegrid-event-short .fc-event-main-frame {
   flex-direction: row;
   overflow: hidden;
 }
 
-.fc-timegrid-event-condensed .fc-event-time:after {
+.fc-timegrid-event-short .fc-event-time:after {
   content: " - "; /* dash surrounded by non-breaking spaces */
 }
 
-.fc-timegrid-event-condensed .fc-event-title {
+.fc-timegrid-event-short .fc-event-title {
   font-size: 0.85em;
   font-size: var(--fc-small-font-size, 0.85em);
 }
 
-.fc-media-screen .fc-timegrid-event {
-  position: absolute; /* absolute WITHIN the harness */
+.fc-timegrid-more-link { /* does NOT inherit from fc-timegrid-event */
+  position: absolute;
+  z-index: 9999; /* hack */
+  color: inherit;
+  color: var(--fc-more-link-text-color, inherit);
+  background: #d0d0d0;
+  background: var(--fc-more-link-bg-color, #d0d0d0);
+  cursor: pointer;
+  margin-bottom: 1px; /* match space below fc-timegrid-event */
+}
+
+.fc-timegrid-more-link-inner { /* has fc-sticky */
+  padding: 3px 2px;
   top: 0;
-  bottom: 1px; /* stay away from bottom slot line */
-  left: 0;
+}
+
+.fc-direction-ltr .fc-timegrid-more-link {
   right: 0;
+}
+
+.fc-direction-rtl .fc-timegrid-more-link {
+  left: 0;
 }
 
 .fc {
@@ -27088,6 +27130,7 @@ A VERTICAL event
   right: 0;
   border-style: solid;
   border-color: #e85347;
+  border-color: var(--fc-now-indicator-color, #e85347);
   border-width: 1px 0 0;
 }
 
@@ -27101,6 +27144,7 @@ A VERTICAL event
   margin-top: -5px; /* vertically center on top coordinate */
   border-style: solid;
   border-color: #e85347;
+  border-color: var(--fc-now-indicator-color, #e85347);
 }
 
 .fc-direction-ltr .fc-timegrid-now-indicator-arrow {
@@ -27126,6 +27170,7 @@ A VERTICAL event
 
 .fc-theme-standard .fc-list {
   border: 1px solid #ddd;
+  border: 1px solid var(--fc-border-color, #ddd);
 }
 
 .fc {
@@ -27134,6 +27179,7 @@ A VERTICAL event
 
 .fc .fc-list-empty {
   background-color: #f5f6fa;
+  background-color: var(--fc-neutral-bg-color, #f5f6fa);
   height: 100%;
   display: flex;
   justify-content: center;
@@ -27160,11 +27206,27 @@ A VERTICAL event
 }
 
 .fc .fc-list-sticky .fc-list-day > * { /* the cells */
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   background: #fff;
   background: var(--fc-page-bg-color, #fff); /* for when headers are styled to be transparent and sticky */
+}
+
+.fc {
+  /* only exists for aria reasons, hide for non-screen-readers */
+}
+
+.fc .fc-list-table thead {
+  position: absolute;
+  left: -10000px;
+}
+
+.fc {
+  /* the table's border-style:hidden gets confused by hidden thead. force-hide top border of first cell */
+}
+
+.fc .fc-list-table tbody > tr:first-child th {
+  border-top: 0;
 }
 
 .fc .fc-list-table th {
@@ -27173,11 +27235,7 @@ A VERTICAL event
 
 .fc .fc-list-table td,
 .fc .fc-list-day-cushion {
-  padding: 0.75rem 1rem;
-}
-
-.fc .fc-list-table th .fc-list-day-cushion {
-  padding: 0.5rem 1rem;
+  padding: 8px 14px;
 }
 
 .fc {
@@ -27219,6 +27277,11 @@ A VERTICAL event
   cursor: pointer; /* whole row will seem clickable */
 }
 
+.fc .fc-list-event:hover td {
+  background-color: #f5f5f5;
+  background-color: var(--fc-list-event-hover-bg-color, #f5f5f5);
+}
+
 .fc {
   /* shrink certain cols */
 }
@@ -27231,11 +27294,13 @@ A VERTICAL event
 
 .fc .fc-list-event-dot {
   display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: #6576ff;
-  border: 2px solid #6576ff;
+  box-sizing: content-box;
+  width: 0;
+  height: 0;
+  border: 5px solid #6576ff;
+  border: calc(var(--fc-list-event-dot-width, 10px) / 2) solid var(--fc-event-border-color, #6576ff);
   border-radius: 5px;
+  border-radius: calc(var(--fc-list-event-dot-width, 10px) / 2);
 }
 
 .fc {
@@ -27259,19 +27324,36 @@ A VERTICAL event
   color: inherit; /* natural color for navlinks */
 }
 
-.fc a.fc-event:not([href]) {
-  color: #fff;
-  background: #6576ff;
+.fc-theme-bootstrap5 a:not([href]) {
+  color: inherit;
+  text-decoration: inherit;
 }
-.fc a.fc-event:not([href]) .fc-daygrid-event-dot {
-  border-color: #fff;
+
+.fc-theme-bootstrap5 .fc-list,
+.fc-theme-bootstrap5 .fc-scrollgrid,
+.fc-theme-bootstrap5 td,
+.fc-theme-bootstrap5 th {
+  border: 1px solid #dbdfea;
+}
+
+.fc-theme-bootstrap5 {
+  /* HACK: reapply core styles after highe-precedence border statement above */
+}
+
+.fc-theme-bootstrap5 .fc-scrollgrid {
+  border-right-width: 0;
+  border-bottom-width: 0;
+}
+
+.fc-theme-bootstrap5-shaded {
+  background-color: var(--bs-gray-200);
 }
 
 .fc-prev-button, .fc-next-button {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-.fc-prev-button > .fa, .fc-next-button > .fa {
+.fc-prev-button > .bi, .fc-next-button > .bi {
   font-size: 1.25rem;
 }
 
@@ -29634,8 +29716,8 @@ body.nav-shown {
   right: 24px !important;
   transform: translateY(-50%);
 }
-.has-sub .nk-menu-badge {
-  right: 48px;
+.nk-menu-toggle > .nk-menu-badge {
+  right: 48px !important;
 }
 .is-dark .nk-menu-badge {
   color: #9cabff;
@@ -40939,6 +41021,21 @@ body.dark-mode.nk-body.ui-softy, body.dark-mode.nk-body.ui-shady {
 .dark-mode .nk-reply-meta-info .whom {
   color: #6576ff;
 }
+.dark-mode .fc table.fc-scrollgrid {
+  border-color: #1d2d40;
+}
+.dark-mode .fc table td, .dark-mode .fc table th {
+  border-color: #1d2d40;
+}
+.dark-mode .fc .fc-list-event:hover td {
+  background: #101924;
+}
+.dark-mode .fc.fc-theme-bootstrap5 .fc-list {
+  border-color: #1d2d40;
+}
+.dark-mode .fc .fc-theme-bootstrap5-shaded {
+  background-color: #1d2d40;
+}
 .dark-mode .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .btn, .dark-mode .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .dual-listbox .dual-listbox__button, .dual-listbox .dark-mode .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .dual-listbox__button {
   color: #b6c6e3;
   border-color: #1d2d40;
@@ -40957,7 +41054,7 @@ body.dark-mode.nk-body.ui-softy, body.dark-mode.nk-body.ui-shady {
 }
 .dark-mode .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .btn.active, .dark-mode .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .dual-listbox .active.dual-listbox__button, .dual-listbox .dark-mode .fc .fc-toolbar.fc-header-toolbar .fc-toolbar-chunk .active.dual-listbox__button {
   color: #6576ff;
-  border-color: #1d2d40;
+  border-color: #1d2d40 !important;
   background: #101924;
   box-shadow: inset 0 0 4px -1px rgba(29, 45, 64, 0.25);
 }
@@ -40974,7 +41071,7 @@ body.dark-mode.nk-body.ui-softy, body.dark-mode.nk-body.ui-shady {
   background: #101924;
 }
 .dark-mode .fc-timegrid-event-harness-inset .fc-timegrid-event, .dark-mode .fc-timegrid-event.fc-event-mirror {
-  box-shadow: 0px 0px 0px 1px #101924;
+  box-shadow: none;
 }
 .dark-mode a.fc-event-primary-dim {
   background-color: #202a47 !important;

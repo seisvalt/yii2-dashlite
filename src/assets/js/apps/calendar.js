@@ -42,7 +42,7 @@
     var calendar = new FullCalendar.Calendar(calendarEl, {
       timeZone: 'UTC',
       initialView: mobileView ? 'listWeek' : 'dayGridMonth',
-      themeSystem: 'bootstrap',
+      themeSystem: 'bootstrap5',
       headerToolbar: {
         left: 'title prev,next',
         center: null,
@@ -61,20 +61,25 @@
       direction: NioApp.State.isRTL ? "rtl" : "ltr",
       nowIndicator: true,
       now: TODAY + 'T09:25:00',
-      eventDragStart: function eventDragStart(info) {
-        $('.popover').popover('hide');
-      },
       eventMouseEnter: function eventMouseEnter(info) {
-        $(info.el).popover({
-          template: '<div class="popover"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
-          title: info.event._def.title,
-          content: info.event._def.extendedProps.description,
-          placement: 'top'
-        });
-        info.event._def.extendedProps.description ? $(info.el).popover('show') : $(info.el).popover('hide');
+        var elm = info.el,
+          title = info.event._def.title,
+          content = info.event._def.extendedProps.description;
+        if (content) {
+          var fcPopover = new bootstrap.Popover(elm, {
+            template: '<div class="popover event-popover"><div class="popover-arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>',
+            title: title,
+            content: content ? content : '',
+            placement: 'top'
+          });
+          fcPopover.show();
+        }
       },
-      eventMouseLeave: function eventMouseLeave(info) {
-        $(info.el).popover('hide');
+      eventMouseLeave: function eventMouseLeave() {
+        removePopover();
+      },
+      eventDragStart: function eventDragStart() {
+        removePopover();
       },
       eventClick: function eventClick(info) {
         // Get data
@@ -113,8 +118,12 @@
         $('#preview-event-end').text(previewEnd);
         $('#preview-event-description').text(description);
         !description ? $('#preview-event-description-check').css('display', 'none') : null;
+        removePopover();
+        var fcMorePopover = document.querySelectorAll('.fc-more-popover');
+        fcMorePopover && fcMorePopover.forEach(function (elm) {
+          elm.remove();
+        });
         previewEventPopup.modal('show');
-        $('.popover').popover('hide');
       },
       events: [{
         id: 'default-event-id-' + Math.floor(Math.random() * 9999999),
@@ -216,7 +225,6 @@
       var eventTheme = $('#event-theme').val();
       var eventStartTimeCheck = eventStartTime ? 'T' + eventStartTime + 'Z' : '';
       var eventEndTimeCheck = eventEndTime ? 'T' + eventEndTime + 'Z' : '';
-      console.log(eventStartTime);
       calendar.addEvent({
         id: 'added-event-id-' + Math.floor(Math.random() * 9999999),
         title: eventTitle,
@@ -255,6 +263,12 @@
       var selectEvent = calendar.getEventById(editEventForm[0].dataset.id);
       selectEvent.remove();
     });
+    function removePopover() {
+      var fcPopover = document.querySelectorAll('.event-popover');
+      fcPopover.forEach(function (elm) {
+        elm.remove();
+      });
+    }
     function to12(time) {
       time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
       if (time.length > 1) {
@@ -274,6 +288,12 @@
       return $cat;
     }
     ;
+    function removePopover() {
+      var fcPopover = document.querySelectorAll('.event-popover');
+      fcPopover.forEach(function (elm) {
+        elm.remove();
+      });
+    }
     NioApp.Select2('.select-calendar-theme', {
       templateResult: customCalSelect
     });
