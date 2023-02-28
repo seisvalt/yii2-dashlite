@@ -9,7 +9,8 @@ DashLiteAsset::register($this);
 SimplebarAsset::register($this);
 
 list(,$url) = Yii::$app->assetManager->publish('@andresbreads/dashlite/assets');
-
+//var_dump($this->params);
+//die();
 $this->params['logo'] = $this->params['logo'] ?? $url.'/images/logo.png';
 $this->params['logo2x'] = $this->params['logo2x'] ?? $url.'/images/logo2x.png';
 $this->params['logoDark'] = $this->params['logoDark'] ?? $url.'/images/logo-dark.png';

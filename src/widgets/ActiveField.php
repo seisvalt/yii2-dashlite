@@ -136,7 +136,7 @@ class ActiveField extends \yii\widgets\ActiveField
      */
     public function checkbox($options = [], $enclosedByLabel = false)
     {
-        $this->template = '<div class="custom-control custom-checkbox">{input}{label}{error}{hint}</div>';
+        $this->template = "<div class=\"custom-control custom-checkbox\">{input}\n{label}\n{hint}\n{error}</div>";
         $this->labelOptions = ['class' => 'custom-control-label'];
         $options = [ 'class' => 'custom-control-input'];
         
