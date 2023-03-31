@@ -619,6 +619,7 @@
     toggle.on('click', function (e) {
       e.preventDefault();
       $(this).toggleClass('active');
+      $('body').toggleClass('dark-mode');
       $body.toggleClass('dark-mode');
     });
   };

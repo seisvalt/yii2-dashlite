@@ -63,8 +63,6 @@ $this->params['userMenu'] = $this->params['userMenu'] ?? [
     ['label' => Yii::t('app', 'Messages'), 'url' => '/user/messages', 'icon' => 'emails', 'badge' => 42],
     ['label' => Yii::t('app', 'Tasks'), 'url' => '/user/tasks', 'icon' => 'task', 'badge' => 31],
     ['label' => Yii::t('app', 'Comments'), 'url' => '/user/comments', 'icon' => 'comments', 'badge' => 17],
-    ['label' => Yii::t('app', 'Messages'), 'url' => '/user/messages', 'icon' => 'emails', 'badge' => 42],
-    ['label' => Yii::t('app', 'Settings')],
     ['label' => Yii::t('app', 'View Profile'), 'url' => '/user/profile', 'icon' => 'user-alt'],
     ['label' => Yii::t('app', 'Account Setting'), 'url' => '/user/profile#setting', 'icon' => 'setting-alt'],
     ['label' => Yii::t('app', 'Login Activity'), 'url' => '/user/profile#activity', 'icon' => 'activity-alt'],
@@ -132,8 +130,8 @@ $this->params['userMenu'] = $this->params['userMenu'] ?? [
                                                     <em class="icon ni ni-user-alt"></em>
                                                 </div>
                                                 <div class="user-info d-none d-md-block">
-                                                    <div class="user-status">Administrator</div>
-                                                    <div class="user-name dropdown-indicator">Abu Bin Ishityak</div>
+                                                    <div class="user-status"><?= $this->params['userRole'] ?></div>
+                                                    <div class="user-name dropdown-indicator"><?= $this->params['userFullName'] ?></div>
                                                 </div>
                                             </div>
                                         </a>

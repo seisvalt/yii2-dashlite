@@ -187,7 +187,7 @@ class UserDropdown extends \yii\bootstrap5\Dropdown
     {
         $signoutForm = Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex']);
         $span = Html::tag('span', Yii::t('app', 'Sign out'));
-        $signoutForm .= Html::submitButton('<em class="icon ni ni-signout"></em>'.$span, ['class' => 'logout']);
+        $signoutForm .= Html::submitButton('<em class="icon ni ni-signout"></em>'.$span, ['class' => 'logout btn btn-link px-0']);
         $signoutForm .= Html::endForm();
         $list = Html::tag('ul', Html::tag('li', $signoutForm), ['class' => 'link-list']);
         return Html::tag('div', $list, ['class' => 'dropdown-inner']);
