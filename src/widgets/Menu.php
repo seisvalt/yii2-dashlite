@@ -158,7 +158,7 @@ class Menu extends \yii\widgets\Menu
                 '{badge}' => isset($item['badge']) ? Html::tag('span', $item['badge'], ['class' => 'nk-menu-badge']) : '',
             ]),
             '{submenuClass}' => isset($item['items']) ? 'nk-menu-toggle' : '',
-            '{url}' => isset($item['url']) ? Url::to($item['url']) : '#',
+            '{url}' => isset($item['url']) && isset($item['url'][0]) && $item['url'][0] !== '' ? Url::to($item['url']) : '#',
             '{icon}' => $iconHtml,
             '{target}' => isset($item['target']) ? 'target="'.$item['target'].'"' : ''
         ]);
