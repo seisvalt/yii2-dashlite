@@ -3,8 +3,8 @@
 * Template Name: DashLite
 * Author: Softnio
 * Author URI: http://themeforest.net/user/softnio
-* Version: 3.1.2
-* Updated: 01.14.2022
+* Version: 3.1.3
+* Updated: 03.24.2023
 **/
 
 
@@ -16740,6 +16740,190 @@ div.dataTables_wrapper div.dataTables_length .input-group-lg > select,
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ni-bugs-alt-fill:before {
+  content: "\ecf9";
+}
+
+.ni-bugs-alt:before {
+  content: "\ecfa";
+}
+
+.ni-bulb-alt-fill:before {
+  content: "\ecfb";
+}
+
+.ni-bulb-alt:before {
+  content: "\ecfc";
+}
+
+.ni-chat-msg-fill:before {
+  content: "\ecfd";
+}
+
+.ni-chat-msg:before {
+  content: "\ecfe";
+}
+
+.ni-diamond-fill:before {
+  content: "\ecff";
+}
+
+.ni-diamond:before {
+  content: "\ed00";
+}
+
+.ni-file-code-fill:before {
+  content: "\ed01";
+}
+
+.ni-google-play-store-alt:before {
+  content: "\ed02";
+}
+
+.ni-laptop-fill:before {
+  content: "\ed03";
+}
+
+.ni-mail-alt:before {
+  content: "\ed04";
+}
+
+.ni-newspaper-fill:before {
+  content: "\ed05";
+}
+
+.ni-newspaper:before {
+  content: "\ed06";
+}
+
+.ni-pie-2-fill:before {
+  content: "\ed07";
+}
+
+.ni-pie-2:before {
+  content: "\ed08";
+}
+
+.ni-presentation-fill:before {
+  content: "\ed09";
+}
+
+.ni-presentation:before {
+  content: "\ed0a";
+}
+
+.ni-projector-screen-fill:before {
+  content: "\ed0b";
+}
+
+.ni-projector-screen:before {
+  content: "\ed0c";
+}
+
+.ni-quote-sq-left-fill:before {
+  content: "\ed0d";
+}
+
+.ni-quote-sq-left:before {
+  content: "\ed0e";
+}
+
+.ni-quote-sq-right-fill:before {
+  content: "\ed0f";
+}
+
+.ni-quote-sq-right:before {
+  content: "\ed10";
+}
+
+.ni-send-fill:before {
+  content: "\ed11";
+}
+
+.ni-setting-question-fill:before {
+  content: "\ed12";
+}
+
+.ni-setting-question:before {
+  content: "\ed13";
+}
+
+.ni-support-fill:before {
+  content: "\ed14";
+}
+
+.ni-support:before {
+  content: "\ed15";
+}
+
+.ni-traffic-signal-fill:before {
+  content: "\ed16";
+}
+
+.ni-traffic-signal:before {
+  content: "\ed17";
+}
+
+.ni-tree-structure-fill:before {
+  content: "\ed18";
+}
+
+.ni-tree-structure:before {
+  content: "\ed19";
+}
+
+.ni-trophy-fill:before {
+  content: "\ed1a";
+}
+
+.ni-trophy:before {
+  content: "\ed1b";
+}
+
+.ni-user-group-fill:before {
+  content: "\ed1c";
+}
+
+.ni-user-group:before {
+  content: "\ed1d";
+}
+
+.ni-user-switch-fill:before {
+  content: "\ed1e";
+}
+
+.ni-user-switch:before {
+  content: "\ed1f";
+}
+
+.ni-nioboard:before {
+  content: "\ecf2";
+}
+
+.ni-graphql:before {
+  content: "\ecf3";
+}
+
+.ni-node-js:before {
+  content: "\ecf4";
+}
+
+.ni-node:before {
+  content: "\ecf5";
+}
+
+.ni-svelte:before {
+  content: "\ecf6";
+}
+
+.ni-typescript:before {
+  content: "\ecf7";
+}
+
+.ni-vue:before {
+  content: "\ecf8";
+}
+
 .ni-centos:before {
   content: "\ece6";
 }
@@ -16926,10 +17110,6 @@ div.dataTables_wrapper div.dataTables_length .input-group-lg > select,
 
 .ni-pen2:before {
   content: "\ecb4";
-}
-
-.ni-property-blank:before {
-  content: "\ecb5";
 }
 
 .ni-propert-blank:before {
@@ -18396,10 +18576,6 @@ div.dataTables_wrapper div.dataTables_length .input-group-lg > select,
   content: "\e968";
 }
 
-.ni-blank-fill:before {
-  content: "\e969";
-}
-
 .ni-blankf-fill:before {
   content: "\e969";
 }
@@ -19280,10 +19456,6 @@ div.dataTables_wrapper div.dataTables_length .input-group-lg > select,
   content: "\eae5";
 }
 
-.ni-happy-fill:before {
-  content: "\ea8f";
-}
-
 .ni-happyf-fill:before {
   content: "\ea8f";
 }
@@ -19736,10 +19908,6 @@ div.dataTables_wrapper div.dataTables_length .input-group-lg > select,
   content: "\ea99";
 }
 
-.ni-histroy:before {
-  content: "\ea99";
-}
-
 .ni-update:before {
   content: "\ec1b";
 }
@@ -20076,16 +20244,8 @@ div.dataTables_wrapper div.dataTables_length .input-group-lg > select,
   content: "\eab4";
 }
 
-.ni-priority:before {
-  content: "\eb36";
-}
-
 .ni-piority:before {
   content: "\eb36";
-}
-
-.ni-priority-fill:before {
-  content: "\eb35";
 }
 
 .ni-piority-fill:before {
