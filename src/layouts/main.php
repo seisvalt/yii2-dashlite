@@ -2,6 +2,7 @@
 
 use andresbreads\dashlite\widgets\Menu;
 use andresbreads\dashlite\widgets\UserDropdown;
+use andresbreads\dashlite\widgets\NavbarMenu;
 use andresbreads\dashlite\assets\DashLiteAsset;
 use andresbreads\dashlite\assets\SimplebarAsset;
 
@@ -56,7 +57,7 @@ $this->params['mainMenu'] = $this->params['mainMenu'] ?? [
 ];
 
 $this->params['userRole'] = $this->params['userRole'] ?? 'Administrator';
-$this->params['userFullName'] = $this->params['userFullName'] ?? 'Abu Bin Ishtiyak';
+$this->params['userFullName'] = $this->params['userFullName'] ?? 'John Doe';
 $this->params['userEmail'] = $this->params['userEmail'] ?? 'info@softnio.com';
 
 $this->params['userMenu'] = $this->params['userMenu'] ?? [
@@ -68,6 +69,13 @@ $this->params['userMenu'] = $this->params['userMenu'] ?? [
     ['label' => Yii::t('app', 'Login Activity'), 'url' => '/user/profile#activity', 'icon' => 'activity-alt'],
     'dark-switch',
 ];
+
+$this->params['navbarMenu'] = $this->params['navbarMenu'] ?? NavbarMenu::widget([
+    'userRole' => $this->params['userRole'],
+    'userFullName' => $this->params['userFullName'],
+    'userEmail' => $this->params['userEmail'],
+    'userMenu' => $this->params['userMenu'],
+]);
 ?>
 
 <body class="nk-body bg-lighter npc-general has-sidebar ">
@@ -75,7 +83,7 @@ $this->params['userMenu'] = $this->params['userMenu'] ?? [
         <!-- main @s -->
         <div class="nk-main ">
             <!-- sidebar @s -->
-            <div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
+            <div class="nk-sidebar nk-sidebar-fixed is-dark is-compact" data-content="sidebarMenu">
                 <div class="nk-sidebar-element nk-sidebar-head">
                     <div class="nk-menu-trigger">
                         <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
@@ -122,99 +130,7 @@ $this->params['userMenu'] = $this->params['userMenu'] ?? [
                                 </div>
                             </div><!-- .nk-header-news -->
                             <div class="nk-header-tools">
-                                <ul class="nk-quick-nav">
-                                    <li class="dropdown user-dropdown">
-                                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                            <div class="user-toggle">
-                                                <div class="user-avatar sm">
-                                                    <em class="icon ni ni-user-alt"></em>
-                                                </div>
-                                                <div class="user-info d-none d-md-block">
-                                                    <div class="user-status"><?= $this->params['userRole'] ?></div>
-                                                    <div class="user-name dropdown-indicator"><?= $this->params['userFullName'] ?></div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <?= UserDropdown::widget([
-                                            'userRole' => $this->params['userRole'],
-                                            'userFullName' => $this->params['userFullName'],
-                                            'userEmail' => $this->params['userEmail'],
-                                            'items' => $this->params['userMenu'],
-                                        ]) ?>
-                                    </li><!-- .dropdown -->
-                                    <li class="dropdown notification-dropdown mr-n1">
-                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
-                                            <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1">
-                                            <div class="dropdown-head">
-                                                <span class="sub-title nk-dropdown-title">Notifications</span>
-                                                <a href="#">Mark All as Read</a>
-                                            </div>
-                                            <div class="dropdown-body">
-                                                <div class="nk-notification">
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em class="icon icon-circle bg-success-dim ni ni-curve-down-left"></em>
-                                                        </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">Your <span>Deposit Order</span> is placed</div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- .nk-notification -->
-                                            </div><!-- .nk-dropdown-body -->
-                                            <div class="dropdown-foot center">
-                                                <a href="#">View All</a>
-                                            </div>
-                                        </div>
-                                    </li><!-- .dropdown -->
-                                </ul><!-- .nk-quick-nav -->
+                                <?= $this->params['navbarMenu'] ?>
                             </div><!-- .nk-header-tools -->
                         </div><!-- .nk-header-wrap -->
                     </div><!-- .container-fliud -->
