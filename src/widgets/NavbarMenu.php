@@ -29,15 +29,7 @@ class NavbarMenu extends \yii\base\Widget
 
     public $userEmail = 'info@softnio.com';
 
-    public $userMenu = [
-        ['label' => Yii::t('app', 'Messages'), 'url' => '/user/messages', 'icon' => 'emails', 'badge' => 42],
-        ['label' => Yii::t('app', 'Tasks'), 'url' => '/user/tasks', 'icon' => 'task', 'badge' => 31],
-        ['label' => Yii::t('app', 'Comments'), 'url' => '/user/comments', 'icon' => 'comments', 'badge' => 17],
-        ['label' => Yii::t('app', 'View Profile'), 'url' => '/user/profile', 'icon' => 'user-alt'],
-        ['label' => Yii::t('app', 'Account Setting'), 'url' => '/user/profile#setting', 'icon' => 'setting-alt'],
-        ['label' => Yii::t('app', 'Login Activity'), 'url' => '/user/profile#activity', 'icon' => 'activity-alt'],
-        'dark-switch',
-    ];
+    public $userMenu = [];
 
     /**
      * List of notifications.
@@ -80,6 +72,25 @@ class NavbarMenu extends \yii\base\Widget
      * @var string
      */
     public $notificationsUrl = '#';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function init()
+    {
+        parent::init();
+        if (count($this->userMenu) == 0) {
+            $this->userMenu = [
+                ['label' => Yii::t('app', 'Messages'), 'url' => '/user/messages', 'icon' => 'emails', 'badge' => 42],
+                ['label' => Yii::t('app', 'Tasks'), 'url' => '/user/tasks', 'icon' => 'task', 'badge' => 31],
+                ['label' => Yii::t('app', 'Comments'), 'url' => '/user/comments', 'icon' => 'comments', 'badge' => 17],
+                ['label' => Yii::t('app', 'View Profile'), 'url' => '/user/profile', 'icon' => 'user-alt'],
+                ['label' => Yii::t('app', 'Account Setting'), 'url' => '/user/profile#setting', 'icon' => 'setting-alt'],
+                ['label' => Yii::t('app', 'Login Activity'), 'url' => '/user/profile#activity', 'icon' => 'activity-alt'],
+                'dark-switch',
+            ];
+        }
+    }
 
     /**
      * {@inheritdoc}
