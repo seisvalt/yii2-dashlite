@@ -146,7 +146,7 @@ class NavbarMenu extends \yii\base\Widget
         $notificationsFoot = Html::tag('div', $notificationsFoot, ['class' => 'dropdown-foot center']);
         $notificationDropdown = Html::beginTag('li', ['class' => 'dropdown notification-dropdown mr-n1']);
         $notificationDropdown .= $notificationIcon;
-        $notificationDropdown = Html::beginTag('div', ['class' => 'dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1']);
+        $notificationDropdown .= Html::beginTag('div', ['class' => 'dropdown-menu dropdown-menu-xl dropdown-menu-right dropdown-menu-s1']);
         $notificationDropdown .= $notificationsHead;
         $notificationDropdown .= $notificationsBody;
         $notificationDropdown .= $notificationsFoot;
