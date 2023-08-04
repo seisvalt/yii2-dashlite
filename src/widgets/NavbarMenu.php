@@ -8,20 +8,20 @@ use yii\helpers\Url;
 /**
  * Widget that provides a navbar menu with the default options of user dropdown and notifications dropdown.
  * 
- * If any other options are going to be displayed before the default options, use the propery `$options`.
+ * If any other menu items are going to be displayed before the default items, use the propery `$menu`.
  * 
  * @property array $options
  */
 class NavbarMenu extends \yii\base\Widget
 {
     /**
-     * Options such as buttons or dropdowns that go before user and notifications options.
+     * Menu items such as buttons or dropdowns that go before user and notifications options.
      * 
-     * Receives string formatted tags to display the option
+     * Receives string formatted tags to display the menu
      *
      * @var array
      */
-    public $options = [];
+    public $menu = [];
 
     public $userRole = 'Administrator';
 
@@ -104,8 +104,8 @@ class NavbarMenu extends \yii\base\Widget
     private function renderItems()
     {
         $items = "";
-        foreach ($this->options as $option) {
-            $items .= $option;
+        foreach ($this->menu as $menu) {
+            $items .= $menu;
         }
         $items .= $this->renderUserDropdown();
         $items .= $this->renderNotificationDropdown();
