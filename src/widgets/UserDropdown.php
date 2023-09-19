@@ -54,6 +54,11 @@ class UserDropdown extends \yii\bootstrap5\Dropdown
     /**
      * @var string
      */
+    public $additionalUserInfo = null;
+
+    /**
+     * @var string
+     */
     public static $iconDefault = 'circle';
 
     /**
@@ -70,6 +75,9 @@ class UserDropdown extends \yii\bootstrap5\Dropdown
 
         $lines[] = $this->renderUserInfo();
 
+        if ($this->additionalUserInfo) {
+            $lines[] = '<div class="dropdown-inner user-account-info">'. $this->additionalUserInfo . '</div>';
+        }
         $links = [];
         $links[] = Html::beginTag('ul', ['class' => 'link-list']);
         foreach ($items as $item) {

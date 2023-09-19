@@ -31,6 +31,8 @@ class NavbarMenu extends \yii\base\Widget
 
     public $userMenu = [];
 
+    public $additionalUserInfo = null;
+
     /**
      * List of notifications.
      * 
@@ -126,6 +128,7 @@ class NavbarMenu extends \yii\base\Widget
             'userFullName' => $this->userFullName,
             'userEmail' => $this->userEmail,
             'items' => $this->userMenu,
+            'additionalUserInfo' => $this->additionalUserInfo
         ]);
         return Html::tag('li', $userInfo . $userDropdown, ['class' => 'dropdown user-dropdown']);
     }
